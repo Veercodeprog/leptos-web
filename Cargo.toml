@@ -3,5 +3,5 @@ resolver = "2"
 
 members = [
   "projects/tools-app-final",
-"projects/tools-app"
+    "projects/tools-app"
 ]
