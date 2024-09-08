@@ -3,28 +3,46 @@ use leptos_meta::*;
 use leptos_router::*;
 
 #[component]
+pub fn Container(children: Children) -> impl IntoView {
+    view! {<div class = "container"> {children()}</div>}
+}
+
+#[component]
+pub fn PageHeader() -> impl IntoView {
+    view! {
+    <header id="page-header">
+          <h1> "Leptos tools"</h1>
+          </header>
+
+      }
+}
+
+#[component]
 pub fn App() -> impl IntoView {
     // Provides context that manages stylesheets, titles, meta tags, etc.
     provide_meta_context();
 
     view! {
-        // injects a stylesheet into the document <head>
-        // id=leptos means cargo-leptos will hot-reload this stylesheet
-        <Stylesheet id="leptos" href="/pkg/tools-app.css"/>
+         // injects a stylesheet into the document <head>
+         // id=leptos means cargo-leptos will hot-reload this stylesheet
+         <Stylesheet id="leptos" href="/pkg/tools-app.css"/>
 
-        // sets the document title
-        <Title text="Testing To do app final"/>
+         // sets the document title
+         <Title text="Testing To do app final"/>
 
-        // content for this welcome page
-        <Router>
-            <main>
-                <Routes>
-                    <Route path="" view=HomePage/>
-                    <Route path="/*any" view=NotFound/>
-                </Routes>
-            </main>
-        </Router>
-    }
+         // content for this welcome page
+       <Container >
+        <PageHeader />
+         <Router>
+             <main>
+                 <Routes>
+                     <Route path="" view=HomePage/>
+                     <Route path="/*any" view=NotFound/>
+                 </Routes>
+             </main>
+         </Router>
+    </Container>
+     }
 }
 
 /// Renders the home page of your application.
