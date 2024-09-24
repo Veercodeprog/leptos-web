@@ -16,6 +16,47 @@ pub fn PageHeader() -> impl IntoView {
 
       }
 }
+#[component]
+pub fn PageFooter() -> impl IntoView {
+    view! {
+    <header id="page-footer">
+         <p> "copyright vp" </p>
+        </header>
+
+      }
+}
+#[component]
+pub fn NavBar() -> impl IntoView {
+    view! {
+        <nav id="main-menu">
+            <ul>
+                <li class="menu-item">
+                    <a href="/">"Home"</a>
+                </li>
+                            </ul>
+        </nav>
+    }
+}
+
+#[component]
+pub fn SideBar() -> impl IntoView {
+    view! { <aside id="sidebar">Sidebar</aside> }
+}
+
+#[component]
+pub fn Content() -> impl IntoView {
+    view! {
+    <Router>
+                <main  id="content">
+                    <Routes>
+                        <Route path="" view=HomePage/>
+                        <Route path="/*any" view=NotFound/>
+                    </Routes>
+                </main>
+            </Router>
+
+          }
+}
 
 #[component]
 pub fn App() -> impl IntoView {
@@ -28,19 +69,15 @@ pub fn App() -> impl IntoView {
          <Stylesheet id="leptos" href="/pkg/tools-app.css"/>
 
          // sets the document title
-         <Title text="Testing To do app final"/>
+         <Title text="Tools final"/>
 
          // content for this welcome page
        <Container >
         <PageHeader />
-         <Router>
-             <main>
-                 <Routes>
-                     <Route path="" view=HomePage/>
-                     <Route path="/*any" view=NotFound/>
-                 </Routes>
-             </main>
-         </Router>
+        <NavBar />
+        <Content />
+                <SideBar />
+        <PageFooter />
     </Container>
      }
 }
